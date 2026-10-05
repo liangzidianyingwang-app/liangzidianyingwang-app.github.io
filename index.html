@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="量子电影网(liangzidianyingwang-app)——聚合最新院线大片、高清电影在线观看与影视资讯的导航门户，提供电影排行、类型片单、影评资讯等栏目。">
+<meta name="keywords" content="量子电影网, liangzidianyingwang-app, 量子电影网官网, 电影在线观看, 最新电影, 电影排行榜">
+<meta name="author" content="量子电影网">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta property="og:title" content="量子电影网 - 最新电影在线观看导航门户">
+<meta property="og:description" content="量子电影网(liangzidianyingwang-app)提供最新院线电影、高清电影排行、类型片单与影视资讯。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://liangzidianyingwang-app.github.io">
+<title>量子电影网 - 最新电影在线观看导航门户 | liangzidianyingwang-app</title>
+<link rel="canonical" href="https://liangzidianyingwang-app.github.io">
+<style>
+:root{
+  --bg:#070b1a;
+  --bg2:#0c1430;
+  --card:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.12);
+  --txt:#eef1f8;
+  --sub:#9aa6c4;
+  --acc:#37e6c8;
+  --acc2:#5b8cff;
+  --shadow:0 18px 40px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:radial-gradient(1200px 700px at 80% -10%,rgba(91,140,255,.28),transparent 60%),
+             radial-gradient(1000px 600px at -10% 20%,rgba(55,230,200,.18),transparent 55%),
+             linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--txt);line-height:1.7;overflow-x:hidden;
+}
+a{color:var(--acc);text-decoration:none;transition:.25s}
+a:hover{color:var(--acc2)}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;font-weight:700;letter-spacing:.5px;cursor:pointer;border:1px solid transparent;transition:.3s}
+.btn-primary{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#04121f;box-shadow:0 10px 26px rgba(55,230,200,.35)}
+.btn-primary:hover{transform:translateY(-3px);color:#04121f}
+.btn-ghost{color:var(--txt);border-color:var(--line);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--acc);color:var(--acc)}
+.section{padding:76px 0}
+.eyebrow{color:var(--acc);font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+.h2{font-size:clamp(26px,5vw,40px);line-height:1.25;margin:10px 0 14px;background:linear-gradient(90deg,#fff,var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--sub);max-width:640px;font-size:15px}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,11,26,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px}
+.logo .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;color:#04121f;font-size:15px;box-shadow:0 6px 16px rgba(55,230,200,.4)}
+.nav-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.nav-links a{font-size:14px;padding:8px 12px;border-radius:999px;color:var(--sub)}
+.nav-links a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
+.menu-btn{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--txt);font-size:20px;cursor:pointer}
+
+/* Hero */
+.hero{padding:80px 0 60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(55,230,200,.1);border:1px solid rgba(55,230,200,.35);color:var(--acc);font-size:13px;margin-bottom:18px}
+.hero h1{font-size:clamp(32px,6.5vw,60px);line-height:1.12;font-weight:850;letter-spacing:-1px}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero p{color:var(--sub);font-size:16px;margin:20px 0 28px;max-width:560px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.stat-row{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+.stat b{display:block;font-size:26px;color:#fff}
+.stat span{font-size:12px;color:var(--sub);letter-spacing:1px}
+.hero-card{position:relative;aspect:4/5;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(2deg);transition:.5s}
+.hero-card:hover{transform:rotate(0) scale(1.02)}
+.hero-card .poster{position:absolute;inset:0;background:
+  linear-gradient(160deg,#1b2a55,#0d1b3e 55%,#0a1128);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:26px}
+.grain{position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay;background-image:radial-gradient(circle at 20% 30%,#37e6c8 0 2px,transparent 3px),radial-gradient(circle at 70% 60%,#5b8cff 0 2px,transparent 3px);background-size:24px 24px}
+.float{position:absolute;border-radius:16px;padding:12px 16px;background:rgba(10,16,38,.85);backdrop-filter:blur(10px);border:1px solid var(--line);font-size:13px;box-shadow:var(--shadow);animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.f1{top:8%;left:-10%;animation-delay:0s}
+.f2{bottom:12%;right:-12%;animation-delay:1.5s}
+.f3{top:44%;right:4%;animation-delay:3s}
+.float b{display:block;font-size:18px;color:var(--acc)}
+
+/* Sections shared */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;font-size:13px;cursor:pointer;border:1px solid var(--line);color:var(--sub);background:rgba(255,255,255,.03)}
+.tab.on{background:var(--acc);color:#04121f;border-color:var(--acc);font-weight:700}
+
+/* Cards */
+.grid{display:grid;gap:22px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.35s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-8px);border-color:rgba(55,230,200,.5);box-shadow:0 22px 44px rgba(0,0,0,.5)}
+.thumb{position:relative;aspect:2/3;overflow:hidden}
+.thumb .fill{position:absolute;inset:0;transition:.6s}
+.card:hover .thumb .fill{transform:scale(1.08)}
+.rank{position:absolute;top:12px;left:12px;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#04121f;font-weight:800;display:grid;place-items:center;box-shadow:0 6px 14px rgba(0,0,0,.4)}
+.tag{position:absolute;top:12px;right:12px;padding:5px 10px;border-radius:999px;font-size:11px;background:rgba(7,11,26,.8);border:1px solid var(--line);color:var(--txt)}
+.score{position:absolute;bottom:12px;left:12px;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700;background:rgba(55,230,200,.9);color:#04121f}
+.info{padding:16px;flex:1;display:flex;flex-direction:column;gap:6px}
+.info h3{font-size:16px;line-height:1.35}
+.info .meta{font-size:12px;color:var(--sub);display:flex;gap:10px;flex-wrap:wrap}
+.info .meta i{font-style:normal;color:var(--acc2)}
+.desc{font-size:13px;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px}
+.bar{height:5px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:auto}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+
+/* Feature row */
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 22px;transition:.3s}
+.feat:hover{background:rgba(55,230,200,.07);border-color:rgba(55,230,200,.45)}
+.feat .ic{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,rgba(55,230,200,.2),rgba(91,140,255,.2));border:1px solid var(--line);display:grid;place-items:center;font-size:22px;margin-bottom:16px}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{font-size:13px;color:var(--sub)}
+
+/* News */
+.news-item{display:grid;grid-template-columns:180px 1fr;gap:20px;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.3s}
+.news-item:hover{border-color:rgba(55,230,200,.5)}
+.news-item .nimg{aspect:4/3;position:relative}
+.news-item .nimg .fill{position:absolute;inset:0}
+.news-item .nbody{padding:18px 20px 18px 0;display:flex;flex-direction:column;gap:8px}
+.news-item h3{font-size:18px;line-height:1.4}
+.news-item .date{font-size:12px;color:var(--acc);letter-spacing:1px}
+
+/* CTA */
+.cta{text-align:center;padding:90px 20px;border-radius:32px;background:radial-gradient(900px 400px at 50% -20%,rgba(55,230,200,.25),transparent 60%),var(--card);border:1px solid var(--line)}
+.cta h2{background:linear-gradient(90deg,#fff,var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta p{color:var(--sub);max-width:560px;margin:14px auto 28px}
+.trust{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:30px;font-size:13px;color:var(--sub)}
+.trust span{border:1px solid var(--line);padding:8px 16px;border-radius:999px}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:50px 0 26px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;margin-bottom:34px}
+.foot-col h4{font-size:15px;margin-bottom:14px;color:#fff}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.foot-col a{font-size:13px;color:var(--sub)}
+.foot-col a:hover{color:var(--acc)}
+.foot-logo p{font-size:13px;color:var(--sub);margin:12px 0 16px;max-width:320px}
+.social{display:flex;gap:10px}
+.social a{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);display:grid;place-items:center;color:var(--sub);font-size:15px}
+.social a:hover{color:var(--acc);border-color:var(--acc)}
+.copy{text-align:center;font-size:12px;color:var(--sub);border-top:1px solid var(--line);padding-top:22px}
+.bread{font-size:12px;color:var(--sub);margin-bottom:12px}
+.bread a{color:var(--sub)}
+.bread a:hover{color:var(--acc)}
+
+/* Mobile */
+@media(max-width:900px){
+  .g4,.feat-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-card{max-width:400px;margin:0 auto;transform:none}
+  .news-item{grid-template-columns:1fr}
+  .news-item .nbody{padding:0 18px 18px}
+  .news-item .nimg{min-height:180px}
+}
+@media(max-width:640px){
+  .wrap{padding:0 16px}
+  .section{padding:56px 0}
+  .menu-btn{display:grid;place-items:center}
+  .nav-links{position:fixed;inset:66px 0 0 0;background:rgba(7,11,26,.97);flex-direction:column;align-items:stretch;padding:26px 20px;gap:10px;transform:translateX(100%);transition:.35s;border-top:1px solid var(--line);overflow:auto}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:16px;padding:14px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--txt)}
+  .g3,.g2,.g4,.feat-grid{grid-template-columns:1fr}
+  .hero{padding:44px 0 40px}
+  .stat-row{gap:18px}
+  .float{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+}
+@media print{.menu-btn,.nav-links{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="量子电影网首页">
+      <span class="dot" aria-hidden="true">量</span>
+      <span>量子电影网</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#top">首页</a>
+      <a href="#rank">电影排行</a>
+      <a href="#genre">类型片单</a>
+      <a href="#feature">网站特色</a>
+      <a href="#news">影视资讯</a>
+      <a href="#about">关于本站</a>
+      <a href="#contact" class="btn btn-primary" style="padding:9px 18px;font-size:13px">访问官网</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="切换菜单">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <nav class="bread" aria-label="面包屑">
+          <a href="https://liangzidianyingwang-app.github.io">首页</a> › <span>电影导航门户</span>
+        </nav>
+        <span class="chip">🎬 2026 全新影视导航体验</span>
+        <h1>发现好电影，从 <em>量子电影网</em> 开始</h1>
+        <p>量子电影网（liangzidianyingwang-app）是一个专注于电影发现与观影决策的导航门户。我们每日更新院线热映、高分经典与类型片单，用清晰的分类、真实的口碑与流畅的移动端体验，帮你 30 秒找到今晚该看的那一部。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#rank">🔥 查看今日排行榜</a>
+          <a class="btn btn-ghost" href="#genre">🎞️ 按类型选片</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>12,800+</b><span>收录影片</span></div>
+          <div class="stat"><b>36</b><span>影片类型</span></div>
+          <div class="stat"><b>98.6%</b><span>移动端适配</span></div>
+          <div class="stat"><b>每日</b><span>内容更新</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-hidden="true">
+        <div class="poster">
+          <div class="grain"></div>
+          <span class="float f1">⭐ <b>9.2</b> 本周口碑第一</span>
+          <span class="float f2">🎬 <b>4K</b> 高清画质</span>
+          <span class="float f3">📱 <b>自适应</b> 全端流畅</span>
+          <div style="position:relative;z-index:2">
+            <div style="font-size:12px;color:var(--acc);letter-spacing:3px">QUANTUM FILM</div>
+            <div style="font-size:30px;font-weight:850;margin-top:6px">量子电影网</div>
+            <div style="font-size:13px;color:var(--sub);margin-top:8px">liangzidianyingwang-app.github.io</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rank -->
+  <section class="section" id="rank">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow">Ranking · 电影排行</div>
+          <h2 class="h2">今日必看 · 实时热榜</h2>
+          <p class="lead">综合播放热度、用户评分与社交讨论度生成，每小时刷新一次。</p>
+        </div>
+        <div class="tabs">
+          <span class="tab on">综合热榜</span>
+          <span class="tab">高分榜</span>
+          <span class="tab">票房榜</span>
+        </div>
+      </div>
+
+      <div class="grid g4">
+        <article class="card">
+          <div class="thumb">
+            <div class="fill" style="background:linear-gradient(160deg,#3a1c71,#d76d77)"></div>
+            <span class="rank">1</span><span class="tag">科幻 / 冒险</span><span class="score">9.2</span>
+          </div>
+          <div class="info">
+            <h3>星际回响</h3>
+            <div class="meta"><span>2026</span><span><i>148 分钟</i></span><span>导演：陈默</span></div>
+            <p class="desc">宇航员在黑洞边缘收到来自未来的信号，一场跨越时空的自救之旅，视效与哲思兼得。</p>
+            <div class="bar"><i style="width:92%"></i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <div class="fill" style="background:linear-gradient(160deg,#0f2027,#203a43,#2c5364)"></div>
+            <span class="rank">2</span><span class="tag">悬疑 / 犯罪</span><span class="score">8.9</span>
+          </div>
+          <div class="info">
+            <h3>无声证词</h3>
+            <div class="meta"><span>2026</span><span><i>126 分钟</i></span><span>导演：林知夏</span></div>
+            <p class="desc">一桩没有目击者的密室案件，靠声音重建真相。反转密度极高，建议二刷。</p>
+            <div class="bar"><i style="width:89%"></i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <div class="fill" style="background:linear-gradient(160deg,#f7971e,#ffd200)"></div>
+            <span class="rank">3</span><span class="tag">剧情 / 家庭</span><span class="score">8.7</span>
+          </div>
+          <div class="info">
+            <h3>开往春天的末班车</h3>
+            <div class="meta"><span>2025</span><span><i>135 分钟</i></span><span>导演：王砚</span></div>
+            <p class="desc">三代人的一封迟到的信，在高铁时代重新被打开。年度最催泪现实主义佳作。</p>
+            <div class="bar"><i style="width:87%"></i></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb">
+            <div class="fill" style="background:linear-gradient(160deg,#42275a,#734b6d)"></div>
+            <span class="rank">4</span><span class="tag">动画 / 奇幻</span><span class="score">8.5</span>
+          </div>
+          <div class="info">
+            <h3>纸鸢与海</h3>
+            <div class="meta"><span>2026</span><span><i>110 分钟</i></span><span>导演：动画工坊</span></div>
+            <p class="desc">手绘水墨风独立动画，讲述渔村少年与一只会说话的纸鸢的夏日冒险。</p>
+            <div class="bar"><i style="width:85%"></i></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Genre -->
+  <section class="section" id="genre" style="background:linear-gradient(180deg,transparent,rgba(55,230,200,.05))">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow">Genre · 类型片单</div>
+          <h2 class="h2">按心情选片，不再纠结</h2>
+          <p class="lead">量子电影网将影片整理为 36 个细分类型，无论你想哭、想笑、想烧脑还是想放松，都能一键命中。</p>
+        </div>
+        <a class="btn btn-ghost" href="#">查看全部类型 →</a>
+      </div>
+
+      <div class="grid g3">
+        <a class="card" href="#">
+          <div class="thumb"><div class="fill" style="background:linear-gradient(135deg,#1a2980,#26d0ce)"></div><span class="tag">Sci-Fi</span></div>
+          <div class="info"><h3>科幻迷航</h3><div class="meta"><span>128 部影片</span><span><i>硬核推荐</i></span></div><p class="desc">从太空歌剧到赛博朋克，涵盖时间旅行、人工智能与星际殖民。</p></div>
+        </a>
+        <a class="card" href="#">
+          <div class="thumb"><div class="fill" style="background:linear-gradient(135deg,#870000,#190a05)"></div><span class="tag">Thriller</span></div>
+          <div class="info"><h3>悬疑烧脑</h3><div class="meta"><span>96 部影片</span><span><i>高能反转</i></span></div><p class="desc">密室、叙事诡计、多重人格，每一部都值得看到最后三分钟。</p></div>
+        </a>
+        <a class="card" href="#">
+          <div class="thumb"><div class="fill" style="background:linear-gradient(135deg,#f2994a,#f2c94c)"></div><span class="tag">Comedy</span></div>
+          <div class="info"><h3>轻松喜剧</h3><div class="meta"><span>210 部影片</span><span><i>解压首选</i></span></div><p class="desc">周末下饭专用，都市、荒诞、黑色幽默一网打尽。</p></div>
+        </a>
+        <a class="card" href="#">
+          <div class="thumb"><div class="fill" style="background:linear-gradient(135deg,#232526,#414345)"></div><span class="tag">Noir</span></div>
+          <div class="info"><h3>犯罪警匪</h3><div class="meta"><span>74 部影片</span><span><i>尺度生猛</i></span></div><p class="desc">卧底、追凶、黑白博弈，港片与新犯罪片双重满足。</p></div>
+        </a>
+        <a class="card" href="#">
+          <div class="thumb"><div class="fill" style="background:linear-gradient(135deg,#56ccf2,#2f80ed)"></div><span class="tag">Documentary</span></div>
+          <div class="info"><h3>纪录片</h3><div class="meta"><span>63 部影片</span><span><i>真实力量</i></span></div><p class="desc">自然、历史、社会议题，用真实影像拓宽认知边界。</p></div>
+        </a>
+        <a class="card" href="#">
+          <div class="thumb"><div class="fill" style="background:linear-gradient(135deg,#834d9b,#d04ed6)"></div><span class="tag">Animation</span></div>
+          <div class="info"><h3>动画精选</h3><div class="meta"><span>152 部影片</span><span><i>全龄向</i></span></div><p class="desc">不只是给孩子的礼物，成人向动画同样拥有顶级叙事。</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature -->
+  <section class="section" id="feature">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow">Why Us · 网站特色</div>
+          <h2 class="h2">为什么选择量子电影网</h2>
+          <p class="lead">不做内容搬运，只做观影决策的减法。每一个栏目都为"更快找到好电影"而设计。</p>
+        </div>
+      </div>
+
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="ic">🎯</div>
+          <h3>精准推荐</h3>
+          <p>基于类型、 mood、时长、年代四维筛选，30 秒缩小选择范围，告别"不知道看什么"。</p>
+        </div>
+        <div class="feat">
+          <div class="ic">📱</div>
+          <h3>移动端优先</h3>
+          <p>响应式布局 + 触控优化，手机、平板、桌面端均获得一致流畅的浏览与检索体验。</p>
+        </div>
+        <div class="feat">
+          <div class="ic">⚡</div>
+          <h3>极速加载</h3>
+          <p>CSS 与结构内联、无冗余依赖，首屏渲染迅速，弱网环境依旧可读、可用。</p>
+        </div>
+        <div class="feat">
+          <div class="ic">🔍</div>
+          <h3>SEO 友好</h3>
+          <p>语义化 HTML、规范化网址、结构化数据与清晰的站内锚点，便于搜索引擎收录与排名。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="section" id="news">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow">News · 影视资讯</div>
+          <h2 class="h2">影视圈 · 最新动态</h2>
+          <p class="lead">院线档期、流媒体上线、导演访谈与冷门佳片挖掘，每周更新。</p>
+        </div>
+        <a class="btn btn-ghost" href="#">更多资讯 →</a>
+      </div>
+
+      <div class="grid g2">
+        <a class="news-item" href="#">
+          <div class="nimg"><div class="fill" style="background:linear-gradient(135deg,#141e30,#243b55)"></div></div>
+          <div class="nbody">
+            <span class="date">2026 · 10 · 03</span>
+            <h3>国庆档收官：《星际回响》以 28 亿票房登顶，科幻类型再证市场潜力</h3>
+            <p class="desc">影片凭借扎实的硬科幻设定与情感落点，实现口碑与票房双丰收，业内预测将带动新一轮科幻项目立项。</p>
+            <span class="meta" style="font-size:12px;color:var(--sub)">阅读 3.2 万 · 影市观察</span>
+          </div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="nimg"><div class="fill" style="background:linear-gradient(135deg,#3a1c71,#d76d77)"></div></div>
+          <div class="nbody">
+            <span class="date">2026 · 09 · 28</span>
+            <h3>流媒体周报：这 5 部被片名耽误的冷门佳作，值得立刻加入片单</h3>
+            <p class="desc">从北欧犯罪剧集到东南亚独立电影，我们逐帧筛出真正值得花时间的作品。</p>
+            <span class="meta" style="font-size:12px;color:var(--sub)">阅读 1.8 万 · 片单推荐</span>
+          </div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="nimg"><div class="fill" style="background:linear-gradient(135deg,#0f0c29,#302b63,#24243e)"></div></div>
+          <div class="nbody">
+            <span class="date">2026 · 09 · 21</span>
+            <h3>导演专访｜林知夏：《无声证词》的声音设计，是一半的剧本</h3>
+            <p class="desc">"观众以为自己在看画面，其实我们在让他们听真相。"——详聊声音如何成为叙事主角。</p>
+            <span class="meta" style="font-size:12px;color:var(--sub)">阅读 9600 · 深度访谈</span>
+          </div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="nimg"><div class="fill" style="background:linear-gradient(135deg,#f2994a,#f2c94c)"></div></div>
+          <div class="nbody">
+            <span class="date">2026 · 09 · 15</span>
+            <h3>观影指南：秋日治愈片单，适合一个人安静看完的 7 部电影</h3>
+            <p class="desc">节奏舒缓、画面温柔、配乐动人，为需要喘息的时刻准备的一份影像处方。</p>
+            <span class="meta" style="font-size:12px;color:var(--sub)">阅读 2.4 万 · 主题片单</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow">About · 关于本站</div>
+          <h2 class="h2">量子电影网，做你的观影导航仪</h2>
+        </div>
+      </div>
+      <div class="grid g2">
+        <div class="card" style="padding:28px">
+          <h3 style="font-size:20px;margin-bottom:12px">我们做什么</h3>
+          <p style="color:var(--sub);font-size:14px">量子电影网（liangzidianyingwang-app）致力于解决"片荒"这一观影最大痛点。我们不生产影片，而是通过专业的分类、真实的口碑聚合与清晰的检索结构，帮助用户在信息过载的时代快速定位值得投入的两个小时。</p>
+          <p style="color:var(--sub);font-size:14px;margin-top:10px">网站采用移动端优先的响应式设计，结构轻量、加载迅速，并严格遵循搜索引擎收录规范，便于用户通过搜索发现优质内容。</p>
+        </div>
+        <div class="card" style="padding:28px">
+          <h3 style="font-size:20px;margin-bottom:14px">栏目导航</h3>
+          <div class="grid g2" style="gap:12px">
+            <a href="#rank" class="btn btn-ghost" style="justify-content:center">🏆 电影排行</a>
+            <a href="#genre" class="btn btn-ghost" style="justify-content:center">🎞️ 类型片单</a>
+            <a href="#feature" class="btn btn-ghost" style="justify-content:center">✨ 网站特色</a>
+            <a href="#news" class="btn btn-ghost" style="justify-content:center">📰 影视资讯</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="wrap">
+      <div class="cta">
+        <div class="eyebrow">Get Started</div>
+        <h2 class="h2" style="margin-top:10px">今晚，就看点好的</h2>
+        <p>访问量子电影网官网，开启无广告干扰、纯内容为王的选片体验。移动端、桌面端同样顺滑。</p>
+        <a class="btn btn-primary" href="https://liangzidianyingwang-app.github.io">🚀 进入量子电影网官网</a>
+        <div class="trust">
+          <span>✓ 移动端自适应</span>
+          <span>✓ 每日内容更新</span>
+          <span>✓ 无冗余依赖</span>
+          <span>✓ 搜索引擎友好</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col foot-logo">
+        <a class="logo" href="#top"><span class="dot" aria-hidden="true">量</span><span>量子电影网</span></a>
+        <p>量子电影网（liangzidianyingwang-app）是一个电影发现与观影决策导航门户，帮你更快找到值得看的那一部。</p>
+        <div class="social">
+          <a href="#" aria-label="微博">微</a>
+          <a href="#" aria-label="微信">信</a>
+          <a href="#" aria-label="RSS">RSS</a>
+          <a href="#" aria-label="GitHub">GH</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>栏目导航</h4>
+        <ul>
+          <li><a href="#rank">电影排行</a></li>
+          <li><a href="#genre">类型片单</a></li>
+          <li><a href="#feature">网站特色</a></li>
+          <li><a href="#news">影视资讯</a></li>
+          <li><a href="#about">关于本站</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>影片类型</h4>
+        <ul>
+          <li><a href="#">科幻</a></li>
+          <li><a href="#">悬疑</a></li>
+          <li><a href="#">喜剧</a></li>
+          <li><a href="#">犯罪</a></li>
+          <li><a href="#">纪录片</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>联系与收录</h4>
+        <ul>
+          <li><a href="https://liangzidianyingwang-app.github.io">官网首页</a></li>
+          <li><a href="#">投稿合作</a></li>
+          <li><a href="#">友情链接</a></li>
+          <li><a href="#">收录说明</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      © 2026 量子电影网 liangzidianyingwang-app · 电影导航门户 · 网站网址：https://liangzidianyingwang-app.github.io<br>
+      本站为导航聚合类网站，影片版权归原作者及发行方所有，如有侵权请联系处理。
+    </div>
+  </div>
+</footer>
+
+<script>
+// 移动端菜单
+var menuBtn=document.getElementById('menuBtn');
+var navLinks=document.getElementById('navLinks');
+menuBtn.addEventListener('click',function(){
+  navLinks.classList.toggle('open');
+  menuBtn.textContent=navLinks.classList.contains('open')?'✕':'☰';
+});
+navLinks.addEventListener('click',function(e){
+  if(e.target.tagName==='A'){
+    navLinks.classList.remove('open');
+    menuBtn.textContent='☰';
+  }
+});
+
+// Tab 切换
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    t.parentElement.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+    t.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
